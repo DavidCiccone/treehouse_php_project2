@@ -1,33 +1,44 @@
 <?php
-/*
- * PHP Techdegree Project 2: Build a Quiz App in PHP
- *
- * These comments are to help you get started.
- * You may split the file and move the comments around as needed.
- *
- * You will find examples of formating in the index.php script.
- * Make sure you update the index file to use this PHP script, and persist the users answers.
- *
- * For the questions, you may use:
- *  1. PHP array of questions
- *  2. json formated questions
- *  3. auto generate questions
- *
- */
+include 'inc/generate_questions.php';
+session_start();
 
-// Include questions
+$questionNumber = "";
+$_SESSION["questionNumber"] = $_SESSION["questionNumber"] + 1;
 
-// Keep track of which questions have been asked
+//applies the question and answer buttons to the page
+echo '<p class="breadcrumbs">Question ' . $_SESSION["questionNumber"] . ' of ' . '10' . ' </p>' .
+'<p class="quiz">What is ' . $questions["leftAdder"] . ' + ' . $questions["rightAdder"] . '?' . '</span></p>';
+echo '<form action="/" method="post">' .
+        '<input type="hidden" name="id" value="0" />' .
+        $questionsAry[0] . $questionsAry[1] . $questionsAry[2] .
+    '</form>';
 
-// Show which question they are on
-// Show random question
-// Shuffle answer buttons
+//checks for a correct answer and applies appropriate toast and adds to score
+if (isset($_POST['correctanswer'])){
+   
+    echo '<div style="display:block;height:55px;"></div><div style="margin:0 auto;"><span class="correct">Correct</span></div>'; 
+    echo '<div style="height:55px;"></div>';
+    echo'<span class="score">Score = ' . $_SESSION["score"] = ++$_SESSION["score"];
+    
+    } else if(isset($_POST['wronganswer'])){
+        echo '<div style="display:block;height:55px;"></div><div style="margin:0 auto;"><span class="incorrect">incorrect</span></div>';
+        echo '<div style="height:55px;"></div>';
+        echo '<span class="score">Score = ' . $_SESSION["score"] = $_SESSION["score"];
+};
+
+//detects if 10 questions have been answered and allows the player to reset the game   
+if($_SESSION["questionNumber"] == 11){
+    echo '<br /><br /><br /><span class="final-score">You final score is ' . $_SESSION["score"] . '</span>  
+    <br /><br /><span class="reset-text">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Would you like to play again?</span>
+    
+    <form class="second-form" action="/" method="post">
+        <input type="submit" class="btn" name="reset" value="Reset" />
+    </form>';
+   
+    session_destroy();
+};
 
 
-// Toast correct and incorrect answers
-// Keep track of answers
-// If all questions have been asked, give option to show score
-// else give option to move to next question
 
 
-// Show score
+
