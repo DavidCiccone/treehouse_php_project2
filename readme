@@ -1,0 +1,7 @@
+Simple quiz app
+
+To run the program download the repository to your computer and point your localhost at the folder containing the index.php file.
+
+The program tests the user on addition question.
+
+Once the user has completed ten questions they are given the option to restart.
